@@ -175,6 +175,7 @@
     <Compile Include="Controllers\DealController.cs" />
     <Compile Include="Controllers\DealsApiController.cs" />
     <Compile Include="Controllers\FileApiController.cs" />
+    <Compile Include="Controllers\FineUploaderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MerchantController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -4171,6 +4172,27 @@
     <Content Include="Assets\SampleDescription.txt" />
     <Content Include="Assets\SampleFinePrint.txt" />
     <Content Include="Assets\SampleHighlight.txt" />
+    <Content Include="Content\css\fineuploader\continue.gif" />
+    <Content Include="Content\css\fineuploader\edit.gif" />
+    <Content Include="Content\css\fineuploader\fine-uploader-gallery.css" />
+    <Content Include="Content\css\fineuploader\fine-uploader-gallery.min.css" />
+    <Content Include="Content\css\fineuploader\fine-uploader-new.css" />
+    <Content Include="Content\css\fineuploader\fine-uploader-new.min.css" />
+    <Content Include="Content\css\fineuploader\fine-uploader.css" />
+    <Content Include="Content\css\fineuploader\fine-uploader.min.css" />
+    <Content Include="Content\css\fineuploader\loading.gif" />
+    <Content Include="Content\css\fineuploader\pause.gif" />
+    <Content Include="Content\css\fineuploader\placeholders\not_available-generic.png" />
+    <Content Include="Content\css\fineuploader\placeholders\waiting-generic.png" />
+    <Content Include="Content\css\fineuploader\processing.gif" />
+    <Content Include="Content\css\fineuploader\retry.gif" />
+    <Content Include="Content\css\fineuploader\templates\default.html" />
+    <Content Include="Content\css\fineuploader\templates\gallery.html" />
+    <Content Include="Content\css\fineuploader\templates\simple-thumbnails.html" />
+    <Content Include="Content\css\fineuploader\trash.gif" />
+    <Content Include="Content\js\fineuploader\iframe.xss.response.js" />
+    <Content Include="Content\js\fineuploader\jquery.fine-uploader.js" />
+    <Content Include="Content\js\fineuploader\jquery.fine-uploader.min.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -4238,6 +4260,9 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <None Include=".bin\bower.cmd" />
+    <None Include=".bin\git.cmd" />
+    <None Include=".bin\node.cmd" />
     <None Include="Assets\frontend\layout\img\.DS_Store" />
     <None Include="Assets\frontend\layout\img\icons\.DS_Store" />
     <None Include="Assets\frontend\pages\img\.DS_Store" />
@@ -4493,6 +4518,7 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\js\fineuploader\LICENSE" />
     <None Include="Properties\PublishProfiles\Local deploy.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Models\Model1.Context.tt">

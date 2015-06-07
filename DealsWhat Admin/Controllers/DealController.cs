@@ -232,10 +232,10 @@ namespace DealsWhat_Admin.Controllers
                         order++;
                     }
 
-                    if (!deal.DealImages.Any())
-                    {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "No images added.");
-                    }
+                    //if (!deal.DealImages.Any())
+                    //{
+                    //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "No images added.");
+                    //}
 
                     db.Deals.Add(deal);
                 }

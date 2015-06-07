@@ -17,6 +17,14 @@ namespace DealsWhat_Admin.Helpers
             return originalDirectory.ToString();
         }
 
+        public static string GetUploadedImagePath(string fileName)
+        {
+            string pathString = PathHelper.GetDefaultDealImagePath();
+            var path = string.Format("{0}\\{1}", pathString, fileName);
+
+            return path;
+        }
+
         private static string GetDefaultDealImagePathInternal()
         {
             var configDirectory = ConfigurationManager.AppSettings["DefaultDealImagesFolder"];

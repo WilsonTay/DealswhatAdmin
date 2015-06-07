@@ -51,7 +51,7 @@ namespace DealsWhat_Admin.Controllers
         }
 
         //
-        // GET: /Deal/Createb
+        // GET: /Deal/Createba
 
         public ActionResult Create(string id = null)
         {

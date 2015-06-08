@@ -65,8 +65,10 @@
                                 @Html.LabelFor(model => model.LongDescription, new { @class = "col-md-3 control-label" })
 
                                 <div class="col-md-6">
-                                    <div id="LongDescription" class="summernote">@Html.Raw(Model.LongDescription)</div>
-                                    @*    @Html.TextBoxFor(model => model.LongDescription, new { @class = "form-control", placeholder = "Deal Name" })*@
+                                    <textarea name="LongDescription" id="LongDescription" rows="50" cols="80">
+                                        @Html.Raw(Model.LongDescription)
+                                    </textarea>
+                                    @*      <div id="LongDescription" class="summernote">@Html.Raw(Model.LongDescription)</div>*@
                                     @Html.ValidationMessageFor(model => model.LongDescription)
                                 </div>
                             </div>
@@ -104,9 +106,10 @@
                                 @Html.LabelFor(model => model.FinePrint, new { @class = "col-md-3 control-label" })
 
                                 <div class="col-md-6">
-                                    <div id="FinePrint" class="summernote">@Html.Raw(Model.FinePrint)</div>
-
-                                    @*  @Html.TextBoxFor(model => model.FinePrint, new { @class = "form-control", placeholder = "Deal Name" })*@
+                                    <textarea name="FinePrint" id="FinePrint" rows="50" cols="80">
+                                        @Html.Raw(Model.FinePrint)
+                                    </textarea>
+                                    @*   <div id="FinePrint" class="summernote">@Html.Raw(Model.FinePrint)</div>*@
                                     @Html.ValidationMessageFor(model => model.FinePrint)
                                 </div>
                             </div>
@@ -115,8 +118,10 @@
                                 @Html.LabelFor(model => model.Highlight, new { @class = "col-md-3 control-label" })
 
                                 <div class="col-md-6">
-                                    <div id="Highlight" class="summernote">@Html.Raw(Model.Highlight)</div>
-                                    @*    @Html.TextBoxFor(model => model.Highlight, new { @class = "form-control", placeholder = "Deal Name" })*@
+                                    <textarea name="Highlight" id="Highlight" rows="50" cols="80">
+                                        @Html.Raw(Model.Highlight)
+                                    </textarea>
+                                    @*  <div id="Highlight" class="summernote">@Html.Raw(Model.Highlight)</div>*@
                                     @Html.ValidationMessageFor(model => model.Highlight)
                                 </div>
                             </div>
@@ -252,7 +257,7 @@
                                     <div class="alert alert-info">
                                         <b>Note: </b>You must create this deal first before you upload images.
                                         <br />
-                                        Images are updated as soon as you have done uploading them, so there is no need to click Create / Edit after upload.
+                                        This deal is updated as soon as you have done uploading the image, so there is no need to click Create / Edit after upload.
                                     </div>
 
                                 </div>
@@ -280,6 +285,10 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
+    <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
+    <script src="@Url.Content("~/Content/js/bootstrap-notify/bootstrap-notify.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/fineuploader/jquery.fine-uploader.min.js")"></script>
+
     <script>
         var baseImageUrl = '@Url.Content("~/Images/")';
 
@@ -295,9 +304,9 @@
             });
         }
 
-        initializeSummernote('#LongDescription');
-        initializeSummernote('#Highlight');
-        initializeSummernote('#FinePrint');
+        //initializeSummernote('#LongDescription');
+        //initializeSummernote('#Highlight');
+        //initializeSummernote('#FinePrint');
 
         // send the file
 
@@ -426,11 +435,11 @@
             var shortTitle = $('#ShortTitle').val();
             var longTitle = $('#LongTitle').val();
             var shortDescription = $('#ShortDescription').val();
-            var longDescription = $('#LongDescription').code();
+            var longDescription = CKEDITOR.instances.LongDescription.getData();
             var regularPrice = $('#RegularPrice').val();
             var specialPrice = $('#SpecialPrice').val();
-            var finePrint = $('#FinePrint').code();
-            var highlight = $('#Highlight').code();
+            var finePrint = CKEDITOR.instances.FinePrint.getData();
+            var highlight = CKEDITOR.instances.Highlight.getData();
 
             var categoryId = $('#Category_Id').val();
             var merchantId = $('#Merchant_Id').val();
@@ -559,6 +568,16 @@
             $('#Merchant_Id').select2('val', '@Model.Merchant_Id');
             $('#Status').select2('val', '@Model.Status');
 
+            CKEDITOR.replace('FinePrint',
+         {
+         });
+            CKEDITOR.replace('Highlight',
+         {
+         });
+            CKEDITOR.replace('LongDescription',
+            {
+                filebrowserImageUploadUrl: '/CKEditor/UploadImage/'
+            }); //path to “Upload.ashx”
         });
 
 
@@ -609,8 +628,6 @@
 
     </script>
 
-    <script src="@Url.Content("~/Content/js/bootstrap-notify/bootstrap-notify.min.js")"></script>
-    <script src="@Url.Content("~/Content/js/fineuploader/jquery.fine-uploader.min.js")"></script>
     <script type="text/template" id="qq-template">
         <div class="qq-uploader-selector qq-uploader" qq-drop-area-text="Drop files here">
             <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">

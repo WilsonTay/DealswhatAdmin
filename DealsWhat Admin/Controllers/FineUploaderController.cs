@@ -54,7 +54,7 @@ namespace DealsWhat_Admin.Controllers
                     {
                         Deal_Id = Guid.Parse(upload.DealId),
                         Id = Guid.Parse(upload.Uuid),
-                        Order = 0,
+                        Order = 1,
                         RelativeUrl = fileName
                     };
 
@@ -69,6 +69,32 @@ namespace DealsWhat_Admin.Controllers
 
             // the anonymous object in the result below will be convert to json and set back to the browser
             return new FineUploaderResult(true, new { extraInformation = 12345, newFileName = fileName });
+        }
+
+        [System.Web.Http.HttpPost]
+        public ActionResult SetMainImage(string id)
+        {
+            using (var context = new DealsContext())
+            {
+                var imageUuid = Guid.Parse(id);
+                var dealId = context.DealImages.First(f => f.Id == imageUuid).Deal_Id.Value;
+
+                var otherImages = context.DealImages.Where(f => f.Deal_Id.Value == dealId);
+
+                foreach (var image in otherImages)
+                {
+                    if (image.Id == imageUuid)
+                    {
+                        image.Order = 0;
+                    }
+                    else
+                    {
+                        image.Order = 1;
+                    }
+                }
+
+                return Content("Success");
+            }
         }
 
         [System.Web.Http.HttpDelete]

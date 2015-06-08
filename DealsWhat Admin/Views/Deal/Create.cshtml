@@ -535,6 +535,42 @@
             });
         }
 
+        function notifyFailure(msg) {
+            $.notify({
+                // options
+                message: msg
+            }, {
+                // settings
+                type: 'danger',
+                placement: {
+                    from: 'bottom',
+                    align: 'center'
+                },
+                animate: {
+                    enter: 'animated fadeInDown',
+                    exit: 'animated fadeOutUp'
+                }
+            });
+        }
+
+        function notifySuccess(msg) {
+            $.notify({
+                // options
+                message: msg
+            }, {
+                // settings
+                type: 'success',
+                placement: {
+                    from: 'bottom',
+                    align: 'center'
+                },
+                animate: {
+                    enter: 'animated fadeInDown',
+                    exit: 'animated fadeOutUp'
+                }
+            });
+        }
+
         function fillSampleText() {
             $('#RegularPrice').val('50.00');
             $('#SpecialPrice').val('35.00');
@@ -703,6 +739,11 @@
 
                     uploader.setName(id, newFileName);
                     console.log(newFileName);
+                },
+                onUpload: function (id, name) {
+                    var button = this.getButton(id);
+
+                    console.log(button);
                 }
             },
             session: {
@@ -717,5 +758,43 @@
             }
         });
 
+        $('.qq-upload-button-selector').after('&nbsp;<button id="btn-set-main-image" type="button" class="btn btn-danger">Set cover image</button>');
+
+        $('.qq-upload-list-selector').on('click', 'li', function (e) {
+
+            $.each($('.qq-upload-list-selector li'), function (index, value) {
+                $(value).attr('aria-selected', false);
+                $(this).css('border', '');
+            });
+
+            $(this).attr('aria-selected', true);
+            $(this).css('border', '2px solid rgba(81, 203, 238, 1)');
+        });
+
+        $('#btn-set-main-image').click(function (e) {
+            var selectedImage = $('.qq-upload-list-selector li[aria-selected=true]');
+
+            if (selectedImage.length == 0) {
+                notifyFailure('Please select an image from the list.');
+                return;
+            }
+
+            var fileId = selectedImage.attr('qq-file-id');
+            var fileUuid = uploader.getUuid(fileId);
+
+            $.ajax(
+                  {
+                      url: '/FineUploader/SetMainImage/' + fileUuid,
+                      type: "POST",
+                      contentType: "application/json; charset=utf-8",
+                      success: function (data, textStatus, xhr) {
+
+                          if (xhr.status == 200) {
+                              notifySuccess('Cover image has been updated.');
+                          }
+
+                      }
+                  });
+        });
     </script>
 }

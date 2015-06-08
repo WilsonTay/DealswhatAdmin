@@ -93,6 +93,8 @@ namespace DealsWhat_Admin.Controllers
                     }
                 }
 
+                context.SaveChanges();
+
                 return Content("Success");
             }
         }

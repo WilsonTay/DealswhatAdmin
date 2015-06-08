@@ -4172,6 +4172,7 @@
     <Content Include="Assets\SampleDescription.txt" />
     <Content Include="Assets\SampleFinePrint.txt" />
     <Content Include="Assets\SampleHighlight.txt" />
+    <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\fineuploader\continue.gif" />
     <Content Include="Content\css\fineuploader\edit.gif" />
     <Content Include="Content\css\fineuploader\fine-uploader-gallery.css" />
@@ -4190,6 +4191,7 @@
     <Content Include="Content\css\fineuploader\templates\gallery.html" />
     <Content Include="Content\css\fineuploader\templates\simple-thumbnails.html" />
     <Content Include="Content\css\fineuploader\trash.gif" />
+    <Content Include="Content\js\bootstrap-notify\bootstrap-notify.min.js" />
     <Content Include="Content\js\fineuploader\iframe.xss.response.js" />
     <Content Include="Content\js\fineuploader\jquery.fine-uploader.js" />
     <Content Include="Content\js\fineuploader\jquery.fine-uploader.min.js" />

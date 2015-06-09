@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Newtonsoft.Json.Linq;
 using DealsWhat_Admin.Helpers;
 using DealsWhat_Admin.Models;
+using ImageResizer;
 
 namespace DealsWhat_Admin.Controllers
 {
@@ -42,11 +43,19 @@ namespace DealsWhat_Admin.Controllers
         {
             // asp.net mvc will set extraParam1 and extraParam2 from the params object passed by Fine-Uploader
             string fileName = Guid.NewGuid().ToString() + upload.Filename;
+            string thumbFileName = Path.GetFileNameWithoutExtension(fileName) + "_thumb" + Path.GetExtension(fileName);
             string filePath = PathHelper.GetUploadedImagePath(fileName);
+            string thumbPath = PathHelper.GetUploadedImagePath(thumbFileName);
 
             try
             {
                 upload.SaveAs(filePath);
+
+                ImageBuilder.Current.Build(filePath, thumbPath,
+                    new ResizeSettings("maxwidth=400&maxheight=400&format=jpg"));
+
+                ImageBuilder.Current.Build(filePath, filePath,
+                  new ResizeSettings("maxwidth=1200&maxheight=1200&format=jpg"));
 
                 using (var context = new DealsContext())
                 {

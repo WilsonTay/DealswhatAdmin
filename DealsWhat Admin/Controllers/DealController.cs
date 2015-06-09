@@ -147,8 +147,6 @@ namespace DealsWhat_Admin.Controllers
                     return Json(new { Message = "Error in saving file" });
                 }
 
-            
-
                 foreach (string fileName in Request.Files)
                 {
                     HttpPostedFileBase file = Request.Files[fileName];
